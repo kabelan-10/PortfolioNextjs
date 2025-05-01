@@ -20,7 +20,9 @@ export default function GalleryPage() {
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
 
   // Extract unique categories
-  const allCategories = [...new Set(galleryItems.map((item) => item.category))];
+  const allCategories = Array.from(
+    new Set(galleryItems.map((item) => item.category))
+  );
 
   // Filter items based on selected categories
   const filteredItems =
@@ -127,7 +129,7 @@ export default function GalleryPage() {
 
       {/* Gallery Grid */}
       <section className="py-8 pb-24 max-w-7xl mx-auto">
-        <div className="container px-4 mx-auto">
+        <div className="container px-2 sm:px-4 sm:mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="relative">
@@ -168,7 +170,7 @@ export default function GalleryPage() {
                                   alt={item.title}
                                   fill
                                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                  className={`object-cover transition-all duration-300 p-2 sm:p-0 ${
+                                  className={`object-cover transition-all duration-300 sm:p-0 ${
                                     hoveredItemId === null ||
                                     hoveredItemId === item.id
                                       ? ""
@@ -178,7 +180,7 @@ export default function GalleryPage() {
                                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
                               </div>
                             </div>
-                            <div className="mt-3 p-2 sm:p-0">
+                            <div className="mt-3 p-4 sm:p-0">
                               <h3 className="font-medium text-lg">
                                 {item.title}
                               </h3>

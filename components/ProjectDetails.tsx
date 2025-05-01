@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowLeft, ExternalLink, Github, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/types";
+import AnimatedText from "./AnimatedText";
+import AnimatedAny from "./AnimatedAny";
 
 export default function ProjectDetails({
   initialProject,
@@ -15,10 +17,14 @@ export default function ProjectDetails({
 }) {
   const router = useRouter();
   const [project, setProject] = useState<Project>(initialProject);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null
+  );
 
   return (
     <div className="pt-24 pb-20">
-      <div className="container px-4 mx-auto">
+      <div className="container px-4 max-w-7xl mx-auto">
         {/* Back Button */}
         <Link
           href="/projects"
@@ -35,7 +41,7 @@ export default function ProjectDetails({
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-5xl font-bold mb-4"
           >
-            {project.title}
+            <AnimatedText cusy zooming text={project.title} direction="up" />
           </motion.h1>
 
           <motion.div
@@ -107,7 +113,9 @@ export default function ProjectDetails({
             transition={{ duration: 0.5, delay: 0.4 }}
             className="lg:col-span-2"
           >
-            <h2 className="text-2xl font-bold mb-6">Project Overview</h2>
+            <h2 className="text-2xl font-bold mb-6">
+              <AnimatedText cusy text="Project Overview" />
+            </h2>
             <div className="prose dark:prose-invert max-w-none">
               <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                 {project.fullDescription}
@@ -120,7 +128,9 @@ export default function ProjectDetails({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            <h2 className="text-2xl font-bold mb-6">Project Details</h2>
+            <h2 className="text-2xl font-bold mb-6">
+              <AnimatedText cusy direction="down" text="Project Details" />
+            </h2>
             <div className="bg-card border border-border rounded-lg p-6">
               <div className="space-y-4">
                 <div>
@@ -170,28 +180,90 @@ export default function ProjectDetails({
         </div>
 
         {/* Project Gallery */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <h2 className="text-2xl font-bold mb-6">Project Gallery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {project.gallery.map((image, index) => (
-              <div
-                key={index}
-                className="relative aspect-video overflow-hidden rounded-lg"
+        <h2 className="text-2xl font-bold mb-6">
+          <AnimatedText cusy direction="up" text="Project Gallery" />
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {project.gallery.map((image, index) => (
+            <div
+              key={index}
+              className="relative aspect-video w-full overflow-hidden rounded-lg cursor-pointer"
+              onClick={() => setSelectedImageIndex(index)} // Set index instead of image URL
+            >
+              <Image
+                src={image}
+                alt={`${project.title} screenshot ${index + 1}`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Modal for image */}
+        <AnimatePresence>
+          {selectedImageIndex !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+              onClick={() => setSelectedImageIndex(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative max-w-4xl w-full bg-card rounded-lg overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
               >
-                <Image
-                  src={image}
-                  alt={`${project.title} screenshot ${index + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </motion.div>
+                <button
+                  onClick={() => setSelectedImageIndex(null)}
+                  className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Previous Button */}
+                <button
+                  onClick={() =>
+                    setSelectedImageIndex((prev) => {
+                      if (prev === null) return 0; // Fallback to the first image if prev is null
+                      return prev === 0 ? project.gallery.length - 1 : prev - 1;
+                    })
+                  }
+                  className="absolute  z-50 left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                >
+                  &lt;
+                </button>
+
+                {/* Image */}
+                <div className="relative aspect-video w-full">
+                  <Image
+                    src={project.gallery[selectedImageIndex]}
+                    alt="Project Screenshot"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={() =>
+                    setSelectedImageIndex((prev) => {
+                      if (prev === null) return 0; // Fallback to the first image if prev is null
+                      return prev === project.gallery.length - 1 ? 0 : prev + 1;
+                    })
+                  }
+                  className="absolute z-50 right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                >
+                  &gt;
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
