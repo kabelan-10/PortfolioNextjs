@@ -52,7 +52,7 @@ export default function AboutPage() {
             <ParallaxEffect direction="up">
               <div className="relative transition-all duration-1000 shadow-bottom-right hover:-translate-y-10 hover:shadow-bottom-right-0.5 aspect-square max-w-md mx-auto lg:max-w-full rounded-2xl overflow-hidden">
                 <Image
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  src="/Images/Me/KabelanE.jpg"
                   alt={personalInfo.name}
                   fill
                   className="object-cover "

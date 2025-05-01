@@ -13,7 +13,7 @@ export const projects: Project[] = [
     "id": "rsl-erp-modules",
     "title": "RSL ERP Modules",
     "description": "Contributed to the development of ERP modules.",
-    "fullDescription": "During my internship at RSL, I contributed to building key modules for their ERP application, focusing on data management, module integration, and streamlining internal processes.",
+    "fullDescription": "I contributed to building key modules for their ERP application, focusing on data management, module integration, and streamlining internal processes.This freelancing project is centered around developing a comprehensive Enterprise Resource Planning (ERP) system for RSL Alloy Coating Pvt. Ltd., a manufacturing company based in Chennai. The primary objective is to streamline and digitize core internal business operations by integrating various departments into a unified, centralized platform. Built using React.js for the frontend, Node.js with Express.js for the backend, and PostgreSQL for the database, the ERP system is designed to be modular, secure, and scalable. Key functionalities span across finance, human resources, logistics and manufacturing, supply chain management, and customer relationship management. As of now, the logistics and manufacturing module has been successfully completed, facilitating efficient tracking of inventory, dispatch coordination, and production processes. The remaining modules—finance, HR, SCM, and CRM—are currently under development, with each tailored to the company’s operational structure. The system also features robust CRUD operations, role-based authentication and authorization, and secure data handling, ensuring that information access is controlled and traceable. Currently at 40% completion, the ERP system promises to enhance operational transparency, optimize workflow efficiency, and support the company's long-term digital transformation.",
     "tags": ["React", "Node.js", "PostgreSQL", "ERP"],
     "image": "https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "gallery": [
@@ -30,8 +30,8 @@ export const projects: Project[] = [
     "id": "edu-guide",
     "title": "EduGuide – Academic Guidance Platform",
     "description": "A personalized academic guidance platform for SSLC students.",
-    "fullDescription": "Built with React.js and Express, EduGuide helps SSLC students choose courses based on assessments, guiding them through personalized suggestions for a clearer academic path.",
-    "tags": ["React", "Express", "PostgreSQL", "Tailwind CSS"],
+    "fullDescription": "EduGuide: Post-SSLC Pathway Finder is a project designed to help SSLC students make informed decisions about their academic and career paths. The system features an interactive MCQ-based interest assessment that helps students identify their strengths and preferences, providing tailored course recommendations based on their responses. The platform is built with React for a dynamic and responsive frontend, PostgreSQL for efficient data storage and management, and Express.js for the backend. It includes comprehensive CRUD (Create, Read, Update, Delete) operations to handle assessments, store and manage user data, and provide personalized course suggestions. The system aims to guide students in exploring career options and academic courses that best match their interests, ensuring a well-rounded decision-making process. With its user-friendly interface and personalized guidance, EduGuide empowers students to plan their educational journey effectively, helping them make better-informed choices for their future.",
+    "tags": ["React.js", "Express.js","Node.js", "PostgreSQL", "Tailwind CSS" , "Jwt"],
     "image": "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "gallery": [
       "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -46,8 +46,8 @@ export const projects: Project[] = [
     "id": "od-management-system",
     "title": "OD Management System",
     "description": "A departmental tool for managing leave requests and approvals.",
-    "fullDescription": "Developed using React.js and Node.js, this tool helps manage attendance, leave requests, and approvals with full CRUD functionality and secure user authentication.",
-    "tags": ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    "fullDescription": "This project, developed for the CSBS Department of Rajalakshmi Engineering College, is an all-in-one Leave, Permission, and On-Duty (OD) Management System aimed at simplifying and automating the leave and attendance management process. The system effectively streamlines OD management by integrating leave tracking, approval workflows, detailed reports, and accurate attendance calculation into a single platform. Built using React.js for the frontend, Express.js for the backend, and PostgreSQL as the database, the system ensures a seamless user experience and reliable performance. It includes robust CRUD (Create, Read, Update, Delete) operations, secure authentication and authorization to ensure data integrity and privacy, and modular RESTful APIs for easy scalability and future enhancements. The system allows users to submit leave requests, track approvals, and access attendance reports, while administrators can manage and approve leave applications with a few clicks. After thorough testing for functionality, security, and usability, the project is now ready for deployment, ensuring a streamlined and efficient way to manage leave, permissions, and on-duty records for the department.",
+    "tags": ["React.js","Express.js" ,"Node.js", "PostgreSQL", "Tailwind CSS","Jwt"],
     "image": "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "gallery": [
       "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -62,8 +62,8 @@ export const projects: Project[] = [
     "id": "EVsync",
     "title": "EV-Sync",
     "description": "A smart EV companion app leveraging AI to optimize vehicle safety, battery consumption, and navigation.",
-    "fullDescription": "EV-Sync is an intelligent electric vehicle (EV) companion app that uses AI to enhance vehicle safety, optimize battery consumption, and provide smart navigation. The app ensures a seamless and efficient riding experience, helping drivers make data-driven decisions for better EV management.",
-    "tags": ["Next.js", "React", "Tailwind CSS", "AI", "Smart Navigation", "EV"],
+    "fullDescription": "EV-Sync is an intelligent electric vehicle (EV) companion app designed to enhance the driving experience by improving efficiency and user convenience. The app features customizable sound profiles, allowing users to select driving sounds that enhance both the driving experience and pedestrian safety. It fosters community engagement by providing a platform for EV owners to share experiences, tips, and plan group events. Additionally, the app utilizes AI to optimize battery performance by analyzing driving patterns, traffic conditions, and terrain to dynamically adjust power consumption, thereby extending battery life. EV-Sync also includes a peer-to-peer battery charge trading feature, enabling users to lend or borrow charge from nearby EVs or in-house charging stations, promoting sustainability and flexibility. Overall, EV-Sync is a comprehensive solution for EV management, ensuring a seamless, efficient, and community-driven driving experience. This is a team project focused on creating a holistic EV solution.",
+    "tags": ["Node.js","Flask API","Python","Express.js", "React Native", "Tailwind CSS", "AI", "EV"],
     "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "gallery": [
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -78,8 +78,8 @@ export const projects: Project[] = [
     "id": "CampusNest",
     "title": "Campus Nest",
     "description": "A comprehensive digital platform for academic collaboration, social engagement, and peer mentorship.",
-    "fullDescription": "Campus Nest is a unified digital platform designed to address key challenges faced by students, such as fragmented communication, lack of centralized resources, and limited recognition for contributions. The platform features a dashboard that serves as a hub for clubs, events, open-source projects, and community recognition. Students can join clubs, participate in events, collaborate on projects, and engage in peer-to-peer learning. The platform includes an AI-powered Resource Library, a Q&A section, a community recognition system with XP points and badges, and personalized mentoring opportunities.",
-    "tags": ["React", "Node.js", "AI", "Social Engagement", "Community", "Student Collaboration"],
+    "fullDescription": "Campus Nest is a team project aimed at creating a comprehensive digital platform that enhances student engagement by promoting academic collaboration, social interaction, and peer mentorship. The platform consolidates resources, communication, and recognition within a unified dashboard, allowing students to join interest-based clubs, participate in events, collaborate on open-source projects, and receive personalized academic support. It features a StudentHub for peer-to-peer Q&A, an AI-powered Resource Library for easy access to study materials, and a Community Recognition system that rewards active participation with XP points and badges. Additionally, Campus Nest enables peer mentorship by connecting students with complementary skills for project collaboration and fostering an inclusive and supportive learning environment. The platform’s integration of activity feeds, event updates, and messaging tools streamlines communication, ensuring an enriching experience for students.",
+    "tags": ["React.js","Flask API","Express.js" ,"Node.js", "AI","Python",],
     "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "gallery": [
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -95,7 +95,7 @@ export const projects: Project[] = [
     "title": "City Vision AR",
     "description": "An augmented reality platform for visualizing city planning, built with Blender, Unity, and Vuforia Engine.",
     "fullDescription": "City Vision AR is an innovative augmented reality project designed to help city planners visualize and interact with urban landscapes in a 3D environment. The platform uses Blender for creating detailed 3D models of the city, Unity for integrating these models into an interactive AR space, and Vuforia Engine for enabling AR functionality on mobile devices. It allows users to explore and plan urban spaces, providing a dynamic tool for city development and decision-making.",
-    "tags": ["Blender", "Unity", "Vuforia", "AR", "City Planning", "3D Modeling"],
+    "tags": ["Blender", "Unity", "Vuforia", "AR", "3D Modeling"],
     "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "gallery": [
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -112,8 +112,8 @@ export const projects: Project[] = [
   "title": "Forest Explorer VR",
   "description": "A VR exploration game set in a dense forest with hidden treasures, an old broken cabin, and mysteries to uncover, powered by Blender and XR interactive tools.",
   "fullDescription": "Forest Explorer VR is an immersive virtual reality exploration game that takes players through a dense, mysterious forest filled with hidden treasures, an abandoned cabin, and ancient secrets. Developed using Blender for 3D modeling and XR interactive tools for immersive VR experiences, players can navigate lush environments, solve puzzles, and uncover clues to find the lost treasures hidden within the forest. The game fully leverages VR technology to immerse players in a highly interactive and dynamic world, providing a captivating exploration experience.",
-  "tags": ["VR", "Unity", "Blender", "XR", "Exploration", "Puzzle", "Adventure", "3D Modeling"],
-  "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  "tags": ["VR", "Unity", "Blender", "XR", "3D Modeling"],
+  "image": "/Images/VR 1.png",
   "gallery": [
     "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
