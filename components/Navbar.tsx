@@ -6,25 +6,25 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import {
-  Pacifico,
-  Handjet,
-  Merienda,
-  WindSong,
-  Open_Sans,
-  Londrina_Shadow,
-  Londrina_Outline,
-  Splash,
-} from "next/font/google";
+// import {
+//   Pacifico,
+//   Handjet,
+//   Merienda,
+//   WindSong,
+//   Open_Sans,
+//   Londrina_Shadow,
+//   Londrina_Outline,
+//   Splash,
+// } from "next/font/google";
 // ${londrinaShadow.className}
-const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
-const handjet = Handjet({ weight: ["400", "700"], subsets: ["latin"] });
-const merienda = Merienda({ weight: ["400", "700"], subsets: ["latin"] });
-const windsong = WindSong({ weight: ["400", "500"], subsets: ["latin"] });
-const openSans = Open_Sans({ weight: ["400", "700"], subsets: ["latin"] });
-const londrinaShadow = Londrina_Shadow({ weight: "400", subsets: ["latin"] });
-const londrinaOutline = Londrina_Outline({ weight: "400", subsets: ["latin"] });
-const splash = Splash({ weight: "400", subsets: ["latin"] });
+// const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
+// const handjet = Handjet({ weight: ["400", "700"], subsets: ["latin"] });
+// const merienda = Merienda({ weight: ["400", "700"], subsets: ["latin"] });
+// const windsong = WindSong({ weight: ["400", "500"], subsets: ["latin"] });
+// const openSans = Open_Sans({ weight: ["400", "700"], subsets: ["latin"] });
+// const londrinaShadow = Londrina_Shadow({ weight: "400", subsets: ["latin"] });
+// const londrinaOutline = Londrina_Outline({ weight: "400", subsets: ["latin"] });
+// const splash = Splash({ weight: "400", subsets: ["latin"] });
 const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
