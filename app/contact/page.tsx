@@ -5,6 +5,7 @@ import AnimatedAny from "@/components/AnimatedAny";
 import Link from "next/link";
 import SlowFadeText from "@/components/SlowFadeText";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import { MailIcon } from "lucide-react";
 import { socialLinks, personalInfo } from "@/lib/data";
 import {
   Github,
@@ -167,6 +168,17 @@ export default function ContactPage() {
                       aria-label="LinkedIn"
                     >
                       <Linkedin data-interative="true" size={20} />
+                    </a>
+                    <a
+                      href={`mailto:${
+                        socialLinks.find((s) => s.platform === "Gmail")?.url
+                      }`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-card border border-border rounded-full hover:bg-accent/10 transition-colors"
+                      aria-label="Email"
+                    >
+                      <MailIcon data-interactive="true" size={20} />
                     </a>
 
                     {/* <a

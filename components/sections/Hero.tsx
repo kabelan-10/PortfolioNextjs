@@ -20,7 +20,24 @@ import {
 import { cn } from "@/lib/utils";
 export default function Hero() {
   const { isBrowser, getTransform } = useMousePosition();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const isSmall = window.innerWidth < 768;
+      console.log("Screen size:", window.innerWidth, "isSmall:", isSmall);
+      setIsSmallScreen(isSmall);
+    };
+
+    // Initial check
+    checkScreenSize();
+
+    // Resize listener
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
@@ -42,6 +59,9 @@ export default function Hero() {
   const circle1Transform = getTransform(0.15);
   const circle2Transform = getTransform(0.2);
   const circle3Transform = getTransform(0.1);
+  const iconSize = isSmallScreen ? 20 : 32;
+  const boxClass = isSmallScreen ? "w-10 h-10" : "w-16 h-16";
+  const iconMargin = isSmallScreen ? "mb-1" : "mb-3";
   //   <motion.header
   //   id="home"
   //   initial={{ opacity: 0, y: -50 }}
@@ -178,7 +198,7 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.2 }}
           >
             <h1
-              className={`text-6xl flex justify-center md:text-8xl font-bold  mb-6 tracking-normal 
+              className={`text-5xl sm:text-6xl flex justify-center md:text-8xl font-bold  mb-6 tracking-normal 
 `}
             >
               <p className="w-fit " data-interactive="true" data-zooming="true">
@@ -255,6 +275,7 @@ export default function Hero() {
                 className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-medium transition-all hover:shadow-lg"
               >
                 <AnimatedText
+                  className="text-xs sm:text-base"
                   cusy
                   once
                   delay={2}
@@ -271,6 +292,7 @@ export default function Hero() {
                 className="border-2 border-primary text-primary px-8 py-4 rounded-full font-medium transition-all hover:bg-primary/10"
               >
                 <AnimatedText
+                  className="text-xs sm:text-base"
                   cusy
                   once
                   delay={2}
@@ -286,38 +308,35 @@ export default function Hero() {
               delay={2.5}
               once
               direction="down"
-              className="flex flex-wrap  flex-row  items-center gap-10 md:gap-20 "
+              className="flex flex-wrap flex-row items-center gap-10 md:gap-20"
             >
               <a
-                data-interactive="true"
                 href={socialLinks.find((s) => s.platform === "GitHub")?.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center w-16 h-16  bg-transparent rounded-lg  hover:bg-accent/10 transition-colors"
+                className={`flex flex-col items-center justify-center ${boxClass} bg-transparent rounded-lg hover:bg-accent/10 transition-colors`}
               >
-                <GitHub data-interactive="true" size={32} className="mb-3" />
+                <GitHub size={iconSize} className={iconMargin} />
               </a>
 
               <a
-                data-interactive="true"
                 href={socialLinks.find((s) => s.platform === "LinkedIn")?.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center w-16 h-16   rounded-3xl bg-transparent  hover:bg-accent/10 transition-colors"
+                className={`flex flex-col items-center justify-center ${boxClass} bg-transparent rounded-lg hover:bg-accent/10 transition-colors`}
               >
-                <Linkedin data-interactive="true" size={32} className="mb-3" />
+                <Linkedin size={iconSize} className={iconMargin} />
               </a>
 
               <a
-                data-interactive="true"
                 href={`mailto:${
                   socialLinks.find((s) => s.platform === "Gmail")?.url
                 }`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center w-16 h-16   rounded-lg bg-transparent  hover:bg-accent/10 transition-colors"
+                className={`flex flex-col items-center justify-center ${boxClass} bg-transparent rounded-lg hover:bg-accent/10 transition-colors`}
               >
-                <MailIcon size={32} className="mb-3" />
+                <MailIcon size={iconSize} className={iconMargin} />
               </a>
             </AnimatedCard>
           </div>
