@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Loader2 } from "lucide-react";
 import AnimatedText from "@/components/AnimatedText";
 import ParallaxEffect from "@/components/ParallaxEffect";
 
@@ -12,23 +12,88 @@ import { GalleryItem as GalleryItemType } from "@/lib/types";
 import Link from "next/link";
 import SlowFadeText from "@/components/SlowFadeText";
 
+// Number of items to load per batch
+const ITEMS_PER_PAGE = 9;
+
 export default function GalleryPage() {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedItem, setSelectedItem] = useState<GalleryItemType | null>(
     null
   );
   const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+  const [displayedItems, setDisplayedItems] = useState<GalleryItemType[]>([]);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const loaderRef = useRef<HTMLDivElement>(null);
 
   // Extract unique categories
   const allCategories = Array.from(
     new Set(galleryItems.map((item) => item.category))
   );
 
-  // Filter items based on selected categories
-  const filteredItems =
-    categories.length > 0
+  // Get filtered items based on categories
+  const getFilteredItems = () => {
+    return categories.length > 0
       ? galleryItems.filter((item) => categories.includes(item.category))
       : galleryItems;
+  };
+
+  // Load more items when user scrolls to bottom
+  const loadMoreItems = () => {
+    if (loading || !hasMore) return;
+
+    setLoading(true);
+
+    // Simulate network request with setTimeout
+    setTimeout(() => {
+      const filteredItems = getFilteredItems();
+      const startIndex = page * ITEMS_PER_PAGE;
+      const itemsToAdd = filteredItems.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE
+      );
+
+      if (itemsToAdd.length > 0) {
+        setDisplayedItems((prev) => [...prev, ...itemsToAdd]);
+        setPage((prev) => prev + 1);
+      }
+
+      // Check if we've loaded all items
+      setHasMore(startIndex + ITEMS_PER_PAGE < filteredItems.length);
+      setLoading(false);
+    }, 500); // Simulate network delay
+  };
+
+  // Reset everything when categories change
+  useEffect(() => {
+    setPage(0);
+    setHasMore(true);
+
+    const filteredItems = getFilteredItems();
+    const initialItems = filteredItems.slice(0, ITEMS_PER_PAGE);
+
+    setDisplayedItems(initialItems);
+    setHasMore(ITEMS_PER_PAGE < filteredItems.length);
+  }, [categories]);
+
+  // Setup Intersection Observer for infinite scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !loading) {
+          loadMoreItems();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasMore, loading, page, categories]);
 
   const toggleCategory = (category: string) => {
     if (categories.includes(category)) {
@@ -38,7 +103,7 @@ export default function GalleryPage() {
     }
   };
 
-  // Split the items into 3 columns
+  // Split the items into columns
   const [numColumns, setNumColumns] = useState(3);
 
   useEffect(() => {
@@ -58,12 +123,13 @@ export default function GalleryPage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Distribute items across columns
   const columns = Array.from(
     { length: numColumns },
     () => [] as GalleryItemType[]
   );
 
-  filteredItems.forEach((item, index) => {
+  displayedItems.forEach((item, index) => {
     columns[index % numColumns].push(item);
   });
 
@@ -127,7 +193,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Gallery Grid */}
+      {/* Gallery Grid with Infinite Scroll */}
       <section className="py-8 pb-24 max-w-7xl mx-auto">
         <div className="container px-2 sm:px-4 sm:mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -267,10 +333,32 @@ export default function GalleryPage() {
             ))}
           </div>
 
-          {filteredItems.length === 0 && (
+          {/* Loading indicator */}
+          <div ref={loaderRef} className="w-full py-8 flex justify-center">
+            {loading && (
+              <div className="flex items-center gap-2">
+                <Loader2 className="animate-spin h-5 w-5 text-primary" />
+                <span className="text-muted-foreground">
+                  Loading more items...
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Empty state message */}
+          {displayedItems.length === 0 && !loading && (
             <div className="text-center py-12">
               <p className="text-muted-foreground">
                 No items found. Try changing your filters.
+              </p>
+            </div>
+          )}
+
+          {/* End of results message */}
+          {!hasMore && displayedItems.length > 0 && !loading && (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground">
+                You've reached the end of the gallery
               </p>
             </div>
           )}
@@ -340,7 +428,7 @@ export default function GalleryPage() {
             </h2>
             <SlowFadeText
               once
-              text="I’m always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
+              text="I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
               className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto"
             />
 

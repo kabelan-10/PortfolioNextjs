@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 // import {
 //   Pacifico,
 //   Handjet,
@@ -74,6 +75,7 @@ export default function RootLayout({
             <ScrollToTop />
             <ThemeToggle />
           </ThemeProvider>
+
           {/* <script
             dangerouslySetInnerHTML={{
               __html: `

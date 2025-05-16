@@ -39,6 +39,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
       <div className="relative aspect-video w-full overflow-hidden">
         <Image
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src={project.image}
           alt={project.title}
           fill

@@ -163,7 +163,7 @@ export default function Hero() {
                 cusy
                 delay={1.5}
                 direction="down"
-                text="Welcome to my world"
+                text="Hello ! I’m"
                 once
               />
             </h2>

@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github, X } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/types";
 import AnimatedText from "./AnimatedText";
@@ -21,7 +28,28 @@ export default function ProjectDetails({
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
   );
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) =>
+        prev === project.gallery.length - 1 ? 0 : prev + 1
+      );
+    }, 3000); // Change image every 3 seconds
 
+    return () => clearInterval(timer);
+  }, [project.gallery.length]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === project.gallery.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? project.gallery.length - 1 : prev - 1
+    );
+  };
   return (
     <div className="pt-24 pb-20">
       <div className="container px-4 max-w-7xl mx-auto">
@@ -91,7 +119,7 @@ export default function ProjectDetails({
         </div>
 
         {/* Featured Image */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -103,6 +131,65 @@ export default function ProjectDetails({
             fill
             className="object-cover"
           />
+        </motion.div> */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="relative aspect-video w-full overflow-hidden rounded-lg mb-12"
+        >
+          <div className="relative w-full h-full">
+            <div
+              className="absolute inset-0 flex transition-transform duration-500 ease-linear"
+              style={{
+                transform: `translateX(-${currentImageIndex * 100}%)`,
+              }}
+            >
+              {project.gallery.map((image, index) => (
+                <div
+                  key={index}
+                  className="relative w-full h-full flex-shrink-0"
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title} - Image ${index + 1}`}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={previousImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
+            aria-label="Next image"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Image Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+            {project.gallery.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentImageIndex ? "bg-white" : "bg-white/50"
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
         </motion.div>
 
         {/* Project Details */}
@@ -184,21 +271,28 @@ export default function ProjectDetails({
           <AnimatedText cusy direction="up" text="Project Gallery" />
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {project.gallery.map((image, index) => (
-            <div
-              key={index}
-              className="relative aspect-video w-full overflow-hidden rounded-lg cursor-pointer"
-              onClick={() => setSelectedImageIndex(index)} // Set index instead of image URL
-            >
-              <Image
-                src={image}
-                alt={`${project.title} screenshot ${index + 1}`}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          ))}
+        <div className="">
+          <AnimatedAny
+            direction="down"
+            once
+            value={50}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {project.gallery.map((image, index) => (
+              <div
+                key={index}
+                className="relative aspect-video w-full overflow-hidden rounded-lg cursor-pointer"
+                onClick={() => setSelectedImageIndex(index)} // Set index instead of image URL
+              >
+                <Image
+                  src={image}
+                  alt={`${project.title} screenshot ${index + 1}`}
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </AnimatedAny>
         </div>
 
         {/* Modal for image */}
@@ -233,18 +327,18 @@ export default function ProjectDetails({
                       return prev === 0 ? project.gallery.length - 1 : prev - 1;
                     })
                   }
-                  className="absolute  z-50 left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
+                  className="absolute  z-50 left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50  text-white rounded-full hover:bg-black/70 transition-colors"
                 >
                   &lt;
                 </button>
 
                 {/* Image */}
-                <div className="relative aspect-video w-full">
+                <div className="relative aspect-video w-full ">
                   <Image
                     src={project.gallery[selectedImageIndex]}
                     alt="Project Screenshot"
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
 

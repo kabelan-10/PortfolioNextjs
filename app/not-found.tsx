@@ -21,7 +21,7 @@ export default function NotFound() {
       {isBrowser && (
         <>
           <motion.div
-            className="absolute rounded-full bg-primary/20 blur-3xl pointer-events-none"
+            className="absolute rounded-full blur-3xl bg-gradient-to-r from-primary/50 to-violet-900/30"
             style={{
               width: "15rem",
               height: "15rem",
@@ -34,20 +34,31 @@ export default function NotFound() {
           />
 
           <motion.div
-            className="absolute rounded-full bg-primary/25 blur-3xl pointer-events-none"
+            className="absolute rounded-full blur-[50px] bg-gradient-to-r from-violet-900/30 to-primary/50"
             style={{
               width: "20rem",
               height: "20rem",
               right: "60%",
-              top: "50%",
+              top: "50",
               x: circle2Transform.x,
               y: circle2Transform.y,
               zIndex: 0,
             }}
+            // <motion.div
+            // className="absolute rounded-full bg-primary/25 blur-3xl"
+            // style={{
+            //   width: "20rem",
+            //   height: "20rem",
+            //   right: "60%",
+            //   top: "50",
+            //   x: circle2Transform.x,
+            //   y: circle2Transform.y,
+            //   zIndex: 0,
+            // }}
           />
 
           <motion.div
-            className="absolute rounded-full bg-primary/10 blur-xl pointer-events-none"
+            className="absolute rounded-full bg-primary/20 blur-2xl"
             style={{
               width: "18rem",
               height: "18rem",

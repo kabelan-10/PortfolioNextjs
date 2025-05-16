@@ -21,7 +21,7 @@ export default function Home() {
       <section className="py-20 bg-accent/5 max-w-7xl mx-auto ">
         <div className="container px-4 mx-auto">
           <div className="flex justify-between items-center mb-12 overflow-clip">
-            <ParallaxEffect direction="leftonly1">
+            <ParallaxEffect dis={50} direction="leftonly1">
               <h2
                 data-interactive="true"
                 className="text-3xl md:text-4xl font-bold"
@@ -150,8 +150,8 @@ export default function Home() {
                     Education
                   </h3>
                   <p className="text-muted-foreground">
-                    Master's in Computer Science from Stanford University,
-                    specialized in AI and Machine Learning.
+                    Bachelor of Technology (B.Tech) in Computer Science and
+                    Business Systems from Rajalakshmi Engineering College.
                   </p>
                 </div>
               </AnimatedCard>
@@ -164,8 +164,9 @@ export default function Home() {
                     Experience
                   </h3>
                   <p className="text-muted-foreground">
-                    5+ years of experience working with leading tech companies
-                    like Google and Microsoft.
+                    Built a strong foundation in full-stack development through
+                    hands-on experience in numerous real-world projects,
+                    hackathons, Tech initiatives.
                   </p>
                 </div>
               </AnimatedCard>
@@ -178,8 +179,8 @@ export default function Home() {
                     Expertise
                   </h3>
                   <p className="text-muted-foreground">
-                    React, Next.js, Node.js, TypeScript, JavaScript, and modern
-                    web development technologies.
+                    React, Next.js, Node.js, TypeScript, JavaScript, Java, SQL ,
+                    NOSQl and modern web development technologies.
                   </p>
                 </div>
               </AnimatedCard>
@@ -192,8 +193,9 @@ export default function Home() {
                     Interests
                   </h3>
                   <p className="text-muted-foreground">
-                    Open-source contributions, designing user experiences, and
-                    exploring emerging technologies.
+                    Bringing ideas to life through open-source collaboration,
+                    thoughtful UX design, and a passion for exploring the latest
+                    in tech.
                   </p>
                 </div>
               </AnimatedCard>
