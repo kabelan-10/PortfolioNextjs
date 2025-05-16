@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Loader2 } from "lucide-react";
@@ -25,29 +25,41 @@ export default function GalleryPage() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [numColumns, setNumColumns] = useState(3);
   const loaderRef = useRef<HTMLDivElement>(null);
 
-  // Extract unique categories
-  const allCategories = Array.from(
-    new Set(galleryItems.map((item) => item.category))
+  // Memoize all categories to prevent recalculation on every render
+  const allCategories = useMemo(
+    () => Array.from(new Set(galleryItems.map((item) => item.category))),
+    []
   );
 
-  // Get filtered items based on categories
-  const getFilteredItems = () => {
-    return categories.length > 0
-      ? galleryItems.filter((item) => categories.includes(item.category))
-      : galleryItems;
-  };
+  // Memoize filtered items based on categories
+  const filteredItems = useMemo(
+    () =>
+      categories.length > 0
+        ? galleryItems.filter((item) => categories.includes(item.category))
+        : galleryItems,
+    [categories]
+  );
 
-  // Load more items when user scrolls to bottom
-  const loadMoreItems = () => {
+  // Convert toggle category to useCallback
+  const toggleCategory = useCallback((category: string) => {
+    setCategories((prevCategories) =>
+      prevCategories.includes(category)
+        ? prevCategories.filter((c) => c !== category)
+        : [...prevCategories, category]
+    );
+  }, []);
+
+  // Memoize the loadMoreItems function
+  const loadMoreItems = useCallback(() => {
     if (loading || !hasMore) return;
 
     setLoading(true);
 
     // Simulate network request with setTimeout
     setTimeout(() => {
-      const filteredItems = getFilteredItems();
       const startIndex = page * ITEMS_PER_PAGE;
       const itemsToAdd = filteredItems.slice(
         startIndex,
@@ -55,7 +67,17 @@ export default function GalleryPage() {
       );
 
       if (itemsToAdd.length > 0) {
-        setDisplayedItems((prev) => [...prev, ...itemsToAdd]);
+        setDisplayedItems((prev) => {
+          // Create a Set of existing item IDs to avoid duplicates
+          const existingIds = new Set(prev.map((item) => item.id));
+
+          // Only add items that don't already exist
+          const newItems = itemsToAdd.filter(
+            (item) => !existingIds.has(item.id)
+          );
+
+          return [...prev, ...newItems];
+        });
         setPage((prev) => prev + 1);
       }
 
@@ -63,21 +85,26 @@ export default function GalleryPage() {
       setHasMore(startIndex + ITEMS_PER_PAGE < filteredItems.length);
       setLoading(false);
     }, 500); // Simulate network delay
-  };
+  }, [loading, hasMore, page, filteredItems]);
 
   // Reset everything when categories change
   useEffect(() => {
     setPage(0);
     setHasMore(true);
 
-    const filteredItems = getFilteredItems();
+    // Get initial items
     const initialItems = filteredItems.slice(0, ITEMS_PER_PAGE);
 
-    setDisplayedItems(initialItems);
-    setHasMore(ITEMS_PER_PAGE < filteredItems.length);
-  }, [categories]);
+    // Ensure we're not keeping any duplicates from previous states
+    const uniqueItems = Array.from(
+      new Map(initialItems.map((item) => [item.id, item])).values()
+    );
 
-  // Setup Intersection Observer for infinite scroll
+    setDisplayedItems(uniqueItems);
+    setHasMore(ITEMS_PER_PAGE < filteredItems.length);
+  }, [filteredItems]);
+
+  // Setup Intersection Observer for infinite scroll with memoized dependencies
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -93,19 +120,9 @@ export default function GalleryPage() {
     }
 
     return () => observer.disconnect();
-  }, [hasMore, loading, page, categories]);
+  }, [hasMore, loading, loadMoreItems]);
 
-  const toggleCategory = (category: string) => {
-    if (categories.includes(category)) {
-      setCategories(categories.filter((c) => c !== category));
-    } else {
-      setCategories([...categories, category]);
-    }
-  };
-
-  // Split the items into columns
-  const [numColumns, setNumColumns] = useState(3);
-
+  // Handle responsive columns with memoized resize handler
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -123,15 +140,50 @@ export default function GalleryPage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Distribute items across columns
-  const columns = Array.from(
-    { length: numColumns },
-    () => [] as GalleryItemType[]
-  );
+  // Memoize the columns distribution - ensure items appear only once
+  const columns = useMemo(() => {
+    // Initialize empty columns
+    const cols = Array.from(
+      { length: numColumns },
+      () => [] as GalleryItemType[]
+    );
 
-  displayedItems.forEach((item, index) => {
-    columns[index % numColumns].push(item);
-  });
+    // Create a Set to track items that have been added
+    const addedItemIds = new Set<string>();
+
+    // Distribute items across columns, ensuring each item appears only once
+    displayedItems.forEach((item, index) => {
+      // Skip if this item has already been added
+      if (addedItemIds.has(item.id)) return;
+
+      // Add the item to the appropriate column
+      cols[index % numColumns].push(item);
+
+      // Mark this item as added
+      addedItemIds.add(item.id);
+    });
+
+    return cols;
+  }, [displayedItems, numColumns]);
+
+  // Memoize handlers for hover events
+  const handleMouseEnter = useCallback((id: string) => {
+    setHoveredItemId(id);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setHoveredItemId(null);
+  }, []);
+
+  // Memoize handler for item selection
+  const handleSelectItem = useCallback((item: GalleryItemType) => {
+    setSelectedItem(item);
+  }, []);
+
+  // Memoize handler for closing modal
+  const handleCloseModal = useCallback(() => {
+    setSelectedItem(null);
+  }, []);
 
   return (
     <div>
@@ -211,8 +263,8 @@ export default function GalleryPage() {
                         className="relative"
                       >
                         <div
-                          onMouseEnter={() => setHoveredItemId(item.id)}
-                          onMouseLeave={() => setHoveredItemId(null)}
+                          onMouseEnter={() => handleMouseEnter(item.id)}
+                          onMouseLeave={handleMouseLeave}
                         >
                           <motion.div
                             initial={{
@@ -226,7 +278,7 @@ export default function GalleryPage() {
                             }}
                             whileHover={{ y: -5, scale: 1.02 }}
                             className="relative cursor-pointer group"
-                            onClick={() => setSelectedItem(item)}
+                            onClick={() => handleSelectItem(item)}
                             viewport={{ once: false, amount: 0.3 }}
                           >
                             <div className="overflow-hidden rounded-lg ">
@@ -263,13 +315,13 @@ export default function GalleryPage() {
 
                 {/** Parallax Effect for Medium Screens (md and above) */}
                 <ParallaxEffect
-                  className="hidden sm:block"
+                  className="hidden sm:block mb-72"
                   key={columnIndex}
                   speed={
                     columnIndex === 0
                       ? 1 // Left column speed
                       : columnIndex === 1
-                      ? 0.8 // Middle column speed (faster)
+                      ? 5 // Middle column speed (faster)
                       : 2 // Right column speed
                   }
                   direction={
@@ -284,8 +336,8 @@ export default function GalleryPage() {
                     {column.map((item, index) => (
                       <div
                         key={item.id}
-                        onMouseEnter={() => setHoveredItemId(item.id)}
-                        onMouseLeave={() => setHoveredItemId(null)}
+                        onMouseEnter={() => handleMouseEnter(item.id)}
+                        onMouseLeave={handleMouseLeave}
                       >
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -296,7 +348,7 @@ export default function GalleryPage() {
                           }}
                           whileHover={{ y: -5, scale: 1.02 }}
                           className="relative cursor-pointer group"
-                          onClick={() => setSelectedItem(item)}
+                          onClick={() => handleSelectItem(item)}
                           viewport={{ once: true, amount: 0.3 }}
                         >
                           <div className="overflow-hidden rounded-lg">
@@ -334,7 +386,10 @@ export default function GalleryPage() {
           </div>
 
           {/* Loading indicator */}
-          <div ref={loaderRef} className="w-full py-8 flex justify-center">
+          <div
+            ref={loaderRef}
+            className="w-full md:mt-60 py-8 flex justify-center"
+          >
             {loading && (
               <div className="flex items-center gap-2">
                 <Loader2 className="animate-spin h-5 w-5 text-primary" />
@@ -373,7 +428,7 @@ export default function GalleryPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
-            onClick={() => setSelectedItem(null)}
+            onClick={handleCloseModal}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -383,7 +438,7 @@ export default function GalleryPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={() => setSelectedItem(null)}
+                onClick={handleCloseModal}
                 className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
               >
                 <X size={20} />

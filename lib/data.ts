@@ -534,214 +534,215 @@ export const blogPosts: BlogPost[] = [
 export const galleryItems: GalleryItem[] = [
   {
     id: 'gallery-1',
-    title: 'Modern Dashboard Design',
+    title: 'Modern Calender Design',
     image: '/Images/Gallery1/Calender.png',
-    category: 'UI Design',
-    description: 'A clean, modern dashboard design with data visualization components and user-friendly navigation.'
+    category: 'Web UI',
+    description: 'A clean, modern Calender design with data visualization components and user-friendly navigation.'
   },
   {
     id: 'gallery-2',
-    title: 'E-commerce Mobile App',
+    title: 'Coffee shop',
     image: '/Images/Gallery1/CoffeeShop.png',
-    category: 'Mobile Design',
-    description: 'Mobile e-commerce application with a focus on product discovery and seamless checkout experience.'
+    category: 'Modeling',
+    description: 'Rendered Coffee shop model in blender'
   },
   {
     id: 'gallery-3',
-    title: 'Travel Blog Website',
+    title: 'AR city view',
     image: '/Images/Gallery1/AR app 1.jpg',
-    category: 'Web Design',
-    description: ''
+    category: 'Modeling',
+    description: 'AR model , city view'
   },
   {
     id: 'gallery-4',
-    title: 'Finance App Interface',
+    title: 'AR city model',
     image: '/Images/Gallery1/AR app full.jpg',
-    category: 'UI Design',
-    description: 'Personal finance application with expense tracking, budgeting tools, and investment insights.'
+    category: 'Modeling',
+    description: 'AR model , city view.'
   },
   {
     id: 'gallery-5',
-    title: 'Landing Page Design',
+    title: 'AR model city top',
     image: '/Images/Gallery1/AR top.png',
-    category: 'Web Design',
-    description: 'Conversion-optimized landing page for a SaaS product with clear value proposition and call-to-action.'
+    category: 'Modeling',
+    description: 'AR model , city view.'
   },
   {
     id: 'gallery-6',
-    title: 'Social Media Marketing',
+    title: 'Community UI - EV Sync',
     image: '/Images/Gallery1/Community.png',
-    category: 'Marketing',
-    description: 'Social media campaign designs with consistent branding and engaging visual content.'
+    category: 'Mobile UI',
+    description: 'Community UI from EV Sync'
   },
   {
     id: 'gallery-7',
-    title: 'Product Photography',
+    title: 'Student DashBoard',
     image : '/Images/Gallery1/dashboard.png',
-    category: 'Photography',
-    description: 'Professional product photography with attention to lighting, composition, and detail.'
+    category: 'Web UI',
+    description: 'Comprehensive student dashboard from OD App'
   },
   {
     id: 'gallery-8',
-    title: 'Brand Identity Design',
+    title: 'IdeaForge 1.0 - EVENT',
     image: '/Images/Gallery1/event.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Web UI',
+    description: 'Landing page of IdeaForge 1.0 hackathon by CSBS - REC'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
+    id: 'gallery-9',
+    title: 'EV Sync Homepage',
     image: '/Images/Gallery1/Home (2).png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Mobile UI',
+    description: 'Homepage of EV sync App - Raptee'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
+    id: 'gallery-10',
+    title: 'IdeaForge 1.0',
     image: '/Images/Gallery1/home.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Web UI',
+    description: 'Landing page of IdeaForge 1.0 hackathon by CSBS - REC'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
+    id: 'gallery-11',
+    title: 'EDUGUIDE - info',
     image: '/Images/Gallery1/home2.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Web UI',
+    description: 'Information page of EduGuide app'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
+    id: 'gallery-12',
+    title: 'EduGuide',
     image: '/Images/Gallery1/Homepage.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Web UI',
+    description: 'Home page of EduGuide App'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
+    id: 'gallery-13',
+    title: 'Modern House render',
     image: '/Images/Gallery1/house1.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Modeling',
+    description: 'rendered image of modern house in blender'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
+    id: 'gallery-14',
+    title: 'ERP Items',
     image: '/Images/Gallery1/item.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+    category: 'Web UI',
+    description: 'Items page of RSL ERP'
   },
   {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/Gallery1/LeaderBoard.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/Gallery1/sos.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/Gallery1/Threads.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/Gallery1/Threads.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/Gallery1/trips.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/Gallery1/uom.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/web/contact.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/web/rslhome.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/VR/VR cabin out hands.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/VR/VR cabin pov 2.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  {
-    id: 'gallery-8',
-    title: 'Brand Identity Design',
-    image: '/Images/VR/VR POV day.png',
-    category: 'Branding',
-    description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  },
-  // {
-  //   id: 'gallery-8',
-  //   title: 'Brand Identity Design',
-  //   image: '',
-  //   category: 'Branding',
-  //   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  // },
-  // {
-  //   id: 'gallery-8',
-  //   title: 'Brand Identity Design',
-  //   image: '',
-  //   category: 'Branding',
-  //   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  // },
-  // {
-  //   id: 'gallery-8',
-  //   title: 'Brand Identity Design',
-  //   image: '',
-  //   category: 'Branding',
-  //   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  // },
-  // {
-  //   id: 'gallery-8',
-  //   title: 'Brand Identity Design',
-  //   image: '',
-  //   category: 'Branding',
-  //   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  // },
-  // {
-  //   id: 'gallery-8',
-  //   title: 'Brand Identity Design',
-  //   image: '',
-  //   category: 'Branding',
-  //   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
-  // }
+  id: 'gallery-15',
+  title: 'Community - Campus NEST',
+  image: '/Images/Gallery1/LeaderBoard.png',
+  category: 'Web UI',
+  description: 'Community page from Campus NEST App'
+},
+{
+  id: 'gallery-16',
+  title: 'SOS - EV sync',
+  image: '/Images/Gallery1/sos.png',
+  category: 'Mobile UI',
+  description: 'SOS page of EV sync'
+},
+{
+  id: 'gallery-17',
+  title: 'Campus NEST - Threads',
+  image: '/Images/Gallery1/Threads.png',
+  category: 'Web UI',
+  description: 'Threads page from Campus NEST'
+},
+// {
+//   id: 'gallery-18',
+//   title: 'Campus NEST - Threads',
+//   image: '/Images/Gallery1/Threads.png',
+//   category: 'Web UI',
+//   description: 'Threads page from campus NEST'
+// },
+{
+  id: 'gallery-19',
+  title: 'Trips - EV sync',
+  image: '/Images/Gallery1/trips.png',
+  category: 'Mobile UI',
+  description: 'Trips page of EV Sync App'
+},
+{
+  id: 'gallery-20',
+  title: 'UOM - RSL ERP',
+  image: '/Images/Gallery1/uom.png',
+  category: 'Web UI',
+  description: 'Units of measurements page of RSL ERP'
+},
+{
+  id: 'gallery-21',
+  title: 'Contact - RSL',
+  image: '/Images/web/contact.png',
+  category: 'Web UI',
+  description: 'Contact page of RSL alloy coating pvt ltd offical page'
+},
+{
+  id: 'gallery-22',
+  title: 'RSL Alloy Coating Pvt Ltd',
+  image: '/Images/web/rslhome.png',
+  category: 'Web UI',
+  description: 'Home page and offical page of RSL alloy coating private limited'
+},
+{
+  id: 'gallery-23',
+  title: 'Forest Explorer VR - night',
+  image: '/Images/VR/VR cabin out hands.png',
+  category: 'VR',
+  description: 'Open world forest exploration VR game during night'
+},
+{
+  id: 'gallery-24',
+  title: 'Forest Explorer VR',
+  image: '/Images/VR/VR cabin pov 2.png',
+  category: 'VR',
+  description: 'Open world forest exploration VR game '
+},
+{
+  id: 'gallery-25',
+  title: 'Forest Explorer VR - Day',
+  image: '/Images/VR/VR POV day.png',
+  category: 'VR',
+  description: 'Open world forest exploration VR game during day'
+},
+// {
+//   id: 'gallery-26',
+//   title: 'Brand Identity Design',
+//   image: '',
+//   category: 'Branding',
+//   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+// },
+// {
+//   id: 'gallery-27',
+//   title: 'Brand Identity Design',
+//   image: '',
+//   category: 'Branding',
+//   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+// },
+// {
+//   id: 'gallery-28',
+//   title: 'Brand Identity Design',
+//   image: '',
+//   category: 'Branding',
+//   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+// },
+// {
+//   id: 'gallery-29',
+//   title: 'Brand Identity Design',
+//   image: '',
+//   category: 'Branding',
+//   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+// },
+// {
+//   id: 'gallery-30',
+//   title: 'Brand Identity Design',
+//   image: '',
+//   category: 'Branding',
+//   description: 'Comprehensive brand identity including logo, color palette, typography, and application examples.'
+// }
+
 ];
 
 export const personalInfo = {

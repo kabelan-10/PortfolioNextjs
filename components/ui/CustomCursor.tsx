@@ -43,55 +43,123 @@ export default function CustomCursor() {
       document.body.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [isVisible]); // Added isVisible as dependency to trigger when mouse starts moving
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // Tailwind 'md' breakpoint
+    };
+
+    checkScreenSize(); // Set on mount
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
   return (
     <>
-      <motion.div
-        className={`pointer-events-none fixed z-[9999] h-8 w-8 rounded-full mix-blend-difference transition-colors duration-150 ${
-          isHovering
-            ? "bg-white border-none"
-            : "border-2 border-white bg-transparent"
-        }`}
-        animate={{
-          x: mousePosition.x - 16,
-          y: mousePosition.y - 16,
-          opacity: isVisible ? 1 : 0,
-          scale: isZooming ? 2 : isHovering ? 1.2 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 50,
-          mass: 0.5,
-        }}
-      />
-      <motion.div
-        className={`pointer-events-none fixed z-[9999] h-2 w-2 rounded-full bg-white mix-blend-difference ${
-          isHovering ? "border-2 border-white bg-white" : "bg-white border-none"
-        }`}
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-          opacity: isVisible ? 1 : 0,
-          scale: isHovering ? 0.4 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 750,
-          damping: 28,
-          mass: 0.25,
-        }}
-      />
-      <style jsx global>{`
-        * {
-          cursor: none !important;
-        }
-        a,
-        button,
-        [role="button"] {
-          cursor: none !important;
-        }
-      `}</style>
+      {!isMobile && (
+        <>
+          <motion.div
+            className={`pointer-events-none fixed z-[9999] h-8 w-8 rounded-full mix-blend-difference transition-colors duration-150 ${
+              isHovering
+                ? "bg-white border-none"
+                : "border-2 border-white bg-transparent"
+            }`}
+            animate={{
+              x: mousePosition.x - 16,
+              y: mousePosition.y - 16,
+              opacity: isVisible ? 1 : 0,
+              scale: isZooming ? 2 : isHovering ? 1.2 : 1,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 50,
+              mass: 0.5,
+            }}
+          />
+          <motion.div
+            className={`pointer-events-none fixed z-[9999] h-2 w-2 rounded-full bg-white mix-blend-difference ${
+              isHovering
+                ? "border-2 border-white bg-white"
+                : "bg-white border-none"
+            }`}
+            animate={{
+              x: mousePosition.x - 4,
+              y: mousePosition.y - 4,
+              opacity: isVisible ? 1 : 0,
+              scale: isHovering ? 0.4 : 1,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 750,
+              damping: 28,
+              mass: 0.25,
+            }}
+          />
+          <style jsx global>{`
+            * {
+              cursor: none !important;
+            }
+            a,
+            button,
+            [role="button"] {
+              cursor: none !important;
+            }
+          `}</style>
+        </>
+      )}
     </>
+    // <>
+
+    //   <motion.div
+    //     className={`pointer-events-none fixed z-[9999] h-8 w-8 rounded-full mix-blend-difference transition-colors duration-150 ${
+    //       isHovering
+    //         ? "bg-white border-none"
+    //         : "border-2 border-white bg-transparent"
+    //     }`}
+    //     animate={{
+    //       x: mousePosition.x - 16,
+    //       y: mousePosition.y - 16,
+    //       opacity: isVisible ? 1 : 0,
+    //       scale: isZooming ? 2 : isHovering ? 1.2 : 1,
+    //     }}
+    //     transition={{
+    //       type: "spring",
+    //       stiffness: 400,
+    //       damping: 50,
+    //       mass: 0.5,
+    //     }}
+    //   />
+    //   <motion.div
+    //     className={`pointer-events-none fixed z-[9999] h-2 w-2 rounded-full bg-white mix-blend-difference ${
+    //       isHovering ? "border-2 border-white bg-white" : "bg-white border-none"
+    //     }`}
+    //     animate={{
+    //       x: mousePosition.x - 4,
+    //       y: mousePosition.y - 4,
+    //       opacity: isVisible ? 1 : 0,
+    //       scale: isHovering ? 0.4 : 1,
+    //     }}
+    //     transition={{
+    //       type: "spring",
+    //       stiffness: 750,
+    //       damping: 28,
+    //       mass: 0.25,
+    //     }}
+    //   />
+    //   <style jsx global>{`
+    //     * {
+    //       cursor: none !important;
+    //     }
+    //     a,
+    //     button,
+    //     [role="button"] {
+    //       cursor: none !important;
+    //     }
+    //   `}</style>
+    // </>
+    //   );
+    // }
   );
 }
