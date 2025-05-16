@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence } from "framer-motion";
+import emailjs from "emailjs-com";
 
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
@@ -45,7 +46,29 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
+    try {
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
 
+      console.log("Email sent:", result.text);
+      setIsSuccess(true);
+      reset();
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      alert("Oops! Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setIsSuccess(false), 5000);
+    }
     // Simulate form submission
     setTimeout(() => {
       console.log("Form data:", data);
