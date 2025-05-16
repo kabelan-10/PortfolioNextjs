@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { ArrowUpCircle } from "lucide-react";
 import { Button } from "./button";
-
+import { usePathname } from "next/navigation";
 export default function ScrollToTop({ visibilityThreshold = 300, text = "" }) {
   const [isVisible, setIsVisible] = useState(false);
 
   // Toggle visibility based on scroll position
+  const pathname = usePathname();
   useEffect(() => {
     const toggleVisibility = () => {
       setIsVisible(window.pageYOffset > visibilityThreshold);
@@ -16,7 +17,10 @@ export default function ScrollToTop({ visibilityThreshold = 300, text = "" }) {
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, [visibilityThreshold]);
-
+  useEffect(() => {
+    // Scroll to top on every pathname change
+    window.scrollTo(0, 0);
+  }, [pathname]);
   // Scroll to top with smooth behavior
   const scrollToTop = () => {
     window.scrollTo({
