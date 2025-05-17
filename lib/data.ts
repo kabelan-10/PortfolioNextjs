@@ -24,8 +24,8 @@ export const projects: Project[] = [
       "/Images/RSL/item.png",
       "/Images/RSL/view.png"
     ],
-    "link": "https://rsl-erp-modules.com",
-    "github": "https://github.com/your-username/rsl-erp-modules",
+    "link": "",
+    "github": "https://github.com/kabelan-10/RSLERP",
     "featured": true
   },
   
@@ -48,8 +48,8 @@ export const projects: Project[] = [
       "/Images/eduguide/resultpage.png",
       "/Images/eduguide/Screenshot 2024-11-07 010628.png",
     ],
-    "link": "https://example-edu-guide.com",
-    "github": "https://github.com/your-username/edu-guide",
+    "link": "https://edu-guide-usid.vercel.app/",
+    "github": "https://github.com/kabelan-10/EduGuide",
     "featured": true
   },
   {
@@ -69,8 +69,8 @@ export const projects: Project[] = [
       "/Images/OD/Login.png",
 
     ],
-    "link": "https://example-od-system.com",
-    "github": "https://github.com/your-username/od-management-system",
+    "link": "",
+    "github": "https://github.com/kabelan-10/od_project_CSBS",
     "featured": true
   },
   {
@@ -96,8 +96,8 @@ export const projects: Project[] = [
       "/Images/EV/Chatbot.png",
     
     ],
-    "link": "https://your-evsync.com",
-    "github": "https://github.com/your-username/ev-sync",
+    "link": "",
+    "github": "https://github.com/kabelan-10/EVSync",
     "featured": true
   }
   ,{
@@ -126,8 +126,8 @@ export const projects: Project[] = [
       "/Images/HAPPYFOX/Threads.png",
       "/Images/HAPPYFOX/chatbot (2).png",
     ],
-    "link": "https://your-campus-nest.com",
-    "github": "https://github.com/your-username/campus-nest",
+    "link": "",
+    "github": "https://github.com/kabelan-10/HappyFox",
     "featured": true
   }
   ,{
@@ -143,8 +143,8 @@ export const projects: Project[] = [
       "/Images/AR/AR app full.jpg",
       "/Images/AR/AR top.png"
     ],
-    "link": "https://your-cityvisionar.com",
-    "github": "https://github.com/your-username/city-vision-ar",
+    "link": "",
+    "github": "",
     "featured": true
   }
 ,
@@ -165,8 +165,8 @@ export const projects: Project[] = [
     "/Images/VR/VR pov sun.png",
     
   ],
-  "link": "https://your-forestexplorervr.com",
-  "github": "https://github.com/your-username/forest-explorer-vr",
+  "link": "",
+  "github": "",
   "featured": true
 }
 ,{
@@ -188,8 +188,8 @@ export const projects: Project[] = [
     "/Images/web/3.png",
     "/Images/web/2.png",
   ],
-  "link": "https://your-rsl-alloy-coating-website.com",
-  "github": "https://github.com/your-username/rsl-alloy-coating-website",
+  "link": "https://www.rslalloy.com/",
+  "github": "https://github.com/kabelan-10/RslWebsiteBuilding",
   "featured": false
 }  
   ,
@@ -206,8 +206,8 @@ export const projects: Project[] = [
       "/Images/idea/3.png",
        "/Images/idea/4.png",
     ],
-    "link": "https://ideaforge-hackathon.vercel.app",
-    "github": "https://github.com/your-username/ideaforge",
+    "link": "https://ideaforgehackathon.netlify.app/",
+    "github": "https://github.com/kabelan-10/ideaforge-website",
     "featured": false
   }
   ,
